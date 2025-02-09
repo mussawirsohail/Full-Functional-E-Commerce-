@@ -57,18 +57,9 @@
 //     </>
 //   );
 // }
-"use client"
-import { useState } from "react";
 import Link from "next/link";
 
 export default function Header() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const items = ["Home", "Shop", "About", "Blog", "Contact"]; // Example items
-
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between items-center w-full h-auto md:h-[58px] bg-[#252B42] text-white px-4 py-2 md:space-x-40">
@@ -96,39 +87,30 @@ export default function Header() {
       <div className="flex flex-col md:flex-row justify-between items-center w-full px-4 py-4 border-b">
         <div className="text-2xl font-bold mb-4 md:mb-0">Bandage</div>
         <div className="flex flex-wrap justify-center md:justify-start space-x-6 md:space-x-10">
-          {filteredItems.map((item, index) => (
-            <p key={index} className="cursor-pointer hover:text-gray-400">
-              {item}
-            </p>
-          ))}
+          <Link href="/">
+            <p className="cursor-pointer hover:text-gray-400">Home</p>
+          </Link>
+          <Link href="/shop2">
+            <p className="cursor-pointer hover:text-gray-400">Shop</p>
+          </Link>
+          <Link href="#">
+            <p className="cursor-pointer hover:text-gray-400">About</p>
+          </Link>
+          <Link href="/Blogs">
+            <p className="cursor-pointer hover:text-gray-400">Blog</p>
+          </Link>
+          <Link href="/ContactUs">
+            <p className="cursor-pointer hover:text-gray-400">Contact</p>
+          </Link>
         </div>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 text-black"
-          />
           <div className="flex items-center space-x-2">
             <img src="vector.png" alt="Login" className="h-[16px] w-[16px]" />
-            <Link href={"/login"}>
-              <p className="text-sm cursor-pointer">Login/ Register</p>
-            </Link>
+            <Link href={"/login"}><p className="text-sm cursor-pointer">Login/ Register</p></Link>
           </div>
-          <button>
-            <img src="search.png" alt="Search" />
-          </button>
-          <Link href={"/wishlist"}>
-            <button>
-              <img src="heart.png" alt="Heart" />
-            </button>
-          </Link>
-          <Link href={"/CartPage"}>
-            <button>
-              <img src="cart.png" alt="Cart" />
-            </button>
-          </Link>
+         <button> <img src="search.png" alt="Search" /> </button>
+         <Link href={"/wishlist"}><button> <img src="heart.png" alt="Heart" /></button></Link>
+         <Link href={"/CartPage"}><button> <img src="cart.png" alt="Cart"  /></button></Link>
         </div>
       </div>
     </>
